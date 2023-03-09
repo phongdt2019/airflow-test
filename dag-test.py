@@ -5,7 +5,6 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 from airflow.models import Variable
 from kubernetes.client import models as k8s
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-from datetime import datetime, timedelta, date
 
 default_args={
    'depends_on_past': False,
