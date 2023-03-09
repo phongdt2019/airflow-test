@@ -20,7 +20,7 @@ with DAG(
    default_args=default_args,
    description='simple dag',
    schedule_interval=timedelta(days=1),
-   start_date=datetime(2023, 03, 09),
+   start_date=datetime(2023, 3, 9),
    catchup=False,
    tags=['example']
 ) as dag:
