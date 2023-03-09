@@ -1,0 +1,32 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: write-hdfs-ngon
+  namespace: spark-jobs
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "lighty55/myspark3:v3.1"
+  imagePullPolicy: Always
+  mainApplicationFile: local:///opt/spark/work-dir/write-hdfs.py
+  sparkVersion: "3.2.1"
+  restartPolicy:
+    type: OnFailure
+    onFailureRetries: 1
+    onFailureRetryInterval: 10
+    onSubmissionFailureRetries: 1
+    onSubmissionFailureRetryInterval: 20
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "800m"
+    labels:
+      version: 3.2.1
+    serviceAccount: spark
+  executor:
+    cores: 1
+    instances: 1
+    memory: "800m"
+    labels:
+      version: 3.2.1
