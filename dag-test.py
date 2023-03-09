@@ -5,7 +5,7 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 from airflow.models import Variable
 from kubernetes.client import models as k8s
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-
+from datetime import datetime, timedelta, date
 
 default_args={
    'depends_on_past': False,
@@ -20,7 +20,7 @@ with DAG(
    default_args=default_args,
    description='simple dag',
    schedule_interval=timedelta(days=1),
-   start_date=datetime(2023, 03, 09),
+   start_date=date.today(),
    catchup=False,
    tags=['example']
 ) as dag:
