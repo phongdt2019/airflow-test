@@ -13,7 +13,7 @@ default_args={
    'retry_delay': timedelta(minutes=5)
 }
 dag = DAG(
-   'dag-spark-hdfs'
+   'dag-spark-hdfs',
    default_args={'max_active_runs': 1},
    description='submit spark-pi as sparkApplication on kubernetes',
    schedule_interval=timedelta(days=1),
