@@ -30,7 +30,7 @@ with DAG(
        retries=2,
        application_file="write-hdfs.yaml",
        namespace="spark-operator",
-       kubernetes_conn_id="myk8s",
+       kubernetes_conn_id="kubernetes_default",
        api_group="sparkoperator.k8s.io",
        api_version="v1beta2",
        do_xcom_push=True,
