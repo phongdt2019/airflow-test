@@ -12,24 +12,20 @@ default_args={
    'retries': 1,
    'retry_delay': timedelta(minutes=5)
 }
-with DAG(
-   'dag-spark',
-   default_args=default_args,
-   description='simple dag',
+dag = DAG(
+   'dag-spark-hdfs'
+   default_args={'max_active_runs': 1},
+   description='submit spark-pi as sparkApplication on kubernetes',
    schedule_interval=timedelta(days=1),
    start_date=datetime(2023, 3, 9),
    catchup=False,
-) as dag:
-   t1 = SparkKubernetesOperator(
-       task_id='n-spark-pi',
-       trigger_rule="all_success",
-       depends_on_past=False,
-       retries=2,
-       application_file="write-hdfs.yaml",
-       namespace="spark-operator",
-       kubernetes_conn_id="kubernetes_default",
-       api_group="sparkoperator.k8s.io",
-       api_version="v1beta2",
-       do_xcom_push=True,
-       dag=dag
-   )
+)
+
+t1 = SparkKubernetesOperator(
+   task_id='hdfs-write',
+   retries=1,
+   application_file="write-hdfs.yaml",
+   namespace="spark-jobs
+   do_xcom_push=True,
+   dag=dag
+)
