@@ -25,7 +25,7 @@ t1 = SparkKubernetesOperator(
    task_id='hdfs-write',
    retries=1,
    application_file="write-hdfs.yaml",
-   namespace="spark-jobs",
+   namespace="default",
    do_xcom_push=True,
    dag=dag,
 )
