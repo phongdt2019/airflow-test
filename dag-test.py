@@ -26,6 +26,7 @@ t1 = SparkKubernetesOperator(
    retries=1,
    application_file="write-hdfs.yaml",
    namespace="default",
+   kubernetes_conn_id="myk8s",
    do_xcom_push=True,
    dag=dag,
 )
